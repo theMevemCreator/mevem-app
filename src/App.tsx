@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import customTheme from './theme/customTheme'
+
+import Header from './components/Header'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import BottomInfo from './views/BottomInfo'
+import WingInfo from './views/WingInfo'
+import NavBar from './views/NavBar'
+import MainInfo from './views/MainInfo'
+import Footer from './views/Footer'
+
+import { ThemeProvider, CSSReset, Flex } from "@chakra-ui/core";
+
+// Use at the root of your app
+
+
+const App: React.FC = () => (
+  <ThemeProvider theme={customTheme}>
+    <CSSReset />
+
+    <Flex flexDirection="column" justifyContent="space-between"  minHeight="100vh">
+
+      <Header />
+      
+      <Flex id="core" flexDirection="row" border="1px solid gray" flexGrow={1} width="100vw" justifyContent="center"> 
+        <NavBar />
+        <Flex flexDirection="column">
+          <MainInfo />
+          <BottomInfo />
+        </Flex>
+        <WingInfo />
+      </Flex>
+
+      <Footer />
+      
+    </Flex>
+
+  </ThemeProvider>
+);
+
 
 export default App;
