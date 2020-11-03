@@ -1,44 +1,42 @@
-import React from 'react';
+import React from 'react'
 
-import customTheme from './theme/customTheme'
+import Header from './components/AppBarSimple'
+import Core from "./views/Core"
+import Footer from './components/Footer'
 
-import Header from './components/Header'
-import './App.css';
+import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
 
-import BottomInfo from './views/BottomInfo'
-import WingInfo from './views/WingInfo'
-import NavBar from './views/NavBar'
-import MainInfo from './views/MainInfo'
-import Footer from './views/Footer'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
-import { ThemeProvider, CSSReset, Flex } from "@chakra-ui/core";
+const useStyles = makeStyles( ( theme: Theme ) => createStyles( {
+  root: {
+    minHeight: '100vh'
+  }
+} ) )
 
-// Use at the root of your app
+const App: React.FC = () => {
 
+  const classes = useStyles()
 
-const App: React.FC = () => (
-  <ThemeProvider theme={customTheme}>
-    <CSSReset />
+  return (
 
-    <Flex flexDirection="column" justifyContent="space-between"  minHeight="100vh">
+    <Grid container  className={classes.root} direction="column" justify="space-between">
 
       <Header />
-      
-      <Flex id="core" flexDirection="row" border="1px solid gray" flexGrow={1} width="100vw" justifyContent="center"> 
-        <NavBar />
-        <Flex flexDirection="column">
-          <MainInfo />
-          <BottomInfo />
-        </Flex>
-        <WingInfo />
-      </Flex>
+
+      <Container>
+
+        <Core />
+
+      </Container>
 
       <Footer />
-      
-    </Flex>
 
-  </ThemeProvider>
-);
+    </Grid>
+
+  )
+}
 
 
-export default App;
+export default App
